@@ -1,35 +1,24 @@
 # Envorce
 
-Mini package for verifying environment variables before running your project
+Mini package for verifying environment variables at runtime to catch misconfigurations as early as possible.
 
 # Configuration
 
-## Via .env file
+There are a number of different ways in which you can specify the environment variables which need to be "envorced". They can be used individually or simultaneously.
 
-In your `.env` file, you can mark multi-line or single-line required environment variables.
+## Via environment variables
+
+Set the environment variable `ENVORCE` as a comma-separated list of required environment variable.
 
 ```bash
-OPTIONAL_ENV_1=
-
-### ENVORCE-START ###
-REQUIRED_ENV=
-ANOTHER_REQUIRED_ENV=
-### ENVORCE-END ###
-
-OPTIONAL_ENV_2=
-
-### ENVORCE
-REQUIRED_ENV=
-OPTIONAL_ENV_1=
+ENVORCE=DB_USERNAME, DB_PASSWORD, API_URL
 ```
 
 Then, in your top-level script simply call
 
 ```python
-from dotenv import load_dotenv
 from envorce import envorce
 
-load_dotenv()
 envorce()
 ```
 
@@ -45,14 +34,11 @@ envorce("AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY")
 
 ## Via configuration file
 
-Add a file `envorce.toml` into your project repository and populate it with required environment variables.
+Add a file `envorce.toml` into your project repository and set the key `envorce` as a list of required environment variables.
 
-### Separate by new line
-
-```bash
-AWS_ACCESS_KEY_ID
-AWS_SECRET_ACCESS_KEY
-REQUIRED_VARIABLE
+```toml
+# envorce.toml
+envorce = ["DATABASE_HOST", "DATABASE_USERNAME", "DATABASE_PASSWORD"]
 ```
 
 Then, in your top-level script simply call
@@ -62,3 +48,5 @@ from envorce import envorce
 
 envorce()
 ```
+
+The program will continue to search parent directories for the file `envorce.toml` until reaching the home directory or the iteration limit.
