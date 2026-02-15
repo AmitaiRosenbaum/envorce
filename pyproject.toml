@@ -1,0 +1,22 @@
+[build-system]
+requires = ["hatchling >= 1.26"]
+build-backend = "hatchling.build"
+[project]
+name = "envorce"
+version = "1.0.0"
+authors = [
+  { name="Amitai Rosenbaum", email="amitai.rosenbaum5@gmail.com" },
+]
+description = "A tiny package for enforcing the existence of required environment variables."
+readme = "README.md"
+requires-python = ">=3.11"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+
+[project.urls]
+Homepage = "https://github.com/AmitaiRosenbaum/envorce"
+Issues = "https://github.com/AmitaiRosenbaum/envorce/issues"

@@ -1,0 +1,2 @@
+# Example envorce.toml file
+envorce = ["AWS_VARIABLE", "OPEN_AI_VARIABLE", "USER"]
